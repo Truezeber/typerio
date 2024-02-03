@@ -4,7 +4,7 @@ const displayText = (inputString, target) => {
   target.innerHTML = `${inputString}`;
 };
 
-const write = (inputString, target) => {
+const write = (inputString, target, speed) => {
   return new Promise((resolve) => {
     const letters = inputString.split("");
     let respond = "";
@@ -20,12 +20,12 @@ const write = (inputString, target) => {
         }
         displayText(respondToSend, target);
         if (i === letters.length - 1) resolve();
-      }, i * 50);
+      }, i * speed);
     });
   });
 };
 
-const renderResponse = async (input, target, newLine, clear) => {
+const renderResponse = async (input, target, speed, newLine, clear) => {
   clear ? (target.innerHTML = "") : null;
   for (let sentenceObject of input) {
     let newPhrase;
@@ -37,7 +37,7 @@ const renderResponse = async (input, target, newLine, clear) => {
     newPhrase.className = `typerio-${sentenceObject.style}`;
     target.appendChild(newPhrase);
 
-    await write(sentenceObject.sentence, newPhrase);
+    await write(sentenceObject.sentence, newPhrase, speed);
   }
 };
 
