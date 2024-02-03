@@ -25,11 +25,11 @@ const write = (inputString, target, speed) => {
   });
 };
 
-const renderResponse = async (input, target, speed, newLine, clear) => {
+const renderResponse = async (input, target, speed, isInline, clear) => {
   clear ? (target.innerHTML = "") : null;
   for (let sentenceObject of input) {
     let newPhrase;
-    if (newLine === true) {
+    if (isInline === false) {
       newPhrase = document.createElement("p");
     } else {
       newPhrase = document.createElement("span");
