@@ -44,8 +44,7 @@ And last but not least _`input`_ which takes an array of objects with the follow
 ];
 ```
 
-> [!IMPORTANT]
-> _`renderText()`_ is an async function. In case of using it on the same target more than one time in row it is recommended to use it with _`await`_.
+> [!IMPORTANT] > _`renderText()`_ is an async function. In case of using it on the same target more than one time in row it is recommended to use it with _`await`_.
 
 ### CSS💙
 
@@ -59,21 +58,21 @@ Typerio uses _`typerio-`_ prefix for its classes, so to style the text, you have
 const targetElement = document.getElementById("target");
 
 const newText = [
-    {
-        text: "This text is red! "
-        style: "red"
-    },
-    {
-        text: "And this is blue! "
-        style: "blue"
-    },
+  {
+    text: "This text is red! ",
+    style: "red",
+  },
+  {
+    text: "And this is blue! ",
+    style: "blue",
+  },
 ];
 
 const anotherText = [
-    {
-        text: "This text is black! "
-        style: "black"
-    }
+  {
+    text: "This text is black! ",
+    style: "black",
+  },
 ];
 
 await typerio.renderText(newText, targetElement, 50, true, true);
