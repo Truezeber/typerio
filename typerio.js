@@ -25,7 +25,7 @@ const write = (inputString, target, speed) => {
   });
 };
 
-const renderResponse = async (input, target, speed, isInline, clear) => {
+const renderText = async (input, target, speed, isInline, clear) => {
   clear ? (target.innerHTML = "") : null;
   for (let sentenceObject of input) {
     let newPhrase;
@@ -41,4 +41,4 @@ const renderResponse = async (input, target, speed, isInline, clear) => {
   }
 };
 
-export { displayText, write, renderResponse };
+export { displayText, write, renderText };
