@@ -44,7 +44,8 @@ And last but not least _`input`_ which takes an array of objects with the follow
 ];
 ```
 
-> [!IMPORTANT] >_`renderText()`_ is an async function. In case of using it on the same target more than one time in row it is recommended to use it with _`await`_.
+> [!IMPORTANT]
+> _`renderText()`_ is an async function. In case of using it on the same target more than one time in row it is recommended to use it with _`await`_.
 
 ### CSS💙
 
