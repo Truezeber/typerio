@@ -1,6 +1,6 @@
 {
   "name": "typerio",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple npm package that writes text character by character.",
   "main": "typerio.js",
   "scripts": {

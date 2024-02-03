@@ -39,12 +39,13 @@ And last but not least _`input`_ which takes an array of objects with the follow
 [
   {
     text: "", //Text to be written
-    style: "", //custom style
+    style: "" //custom style
   },
 ];
 ```
-
-> [!IMPORTANT] > _`renderText()`_ is an async function. In case of using it on the same target more than one time in row it is recommended to use it with _`await`_.
+>Important note!
+>
+> _`renderText()`_ is an async function. In case of using it on the same target more than one time in row it is recommended to use it with _`await`_.
 
 ### CSS💙
 
