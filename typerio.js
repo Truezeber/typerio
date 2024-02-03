@@ -37,7 +37,7 @@ const renderResponse = async (input, target, speed, newLine, clear) => {
     newPhrase.className = `typerio-${sentenceObject.style}`;
     target.appendChild(newPhrase);
 
-    await write(sentenceObject.sentence, newPhrase, speed);
+    await write(sentenceObject.text, newPhrase, speed);
   }
 };
 
