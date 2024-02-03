@@ -66,7 +66,7 @@ const newText = [
   },
   {
     text: "And this is blue! ",
-    style: "blue"
+    style: "blue",
     isInline: true
   },
 ];
