@@ -15,7 +15,7 @@ $ npm install typerio
 Firstly import Typerio into your project.
 
 ```javascript
-import * as typerio from "typerio";
+import * as typerio from "typerio"
 ```
 
 Now you can use _`renderText()`_ function to - as it stands - render a text.
@@ -60,18 +60,18 @@ const targetElement = document.getElementById("target");
 const newText = [
   {
     text: "This text is red! ",
-    style: "red",
+    style: "red"
   },
   {
     text: "And this is blue! ",
-    style: "blue",
+    style: "blue"
   },
 ];
 
 const anotherText = [
   {
     text: "This text is black! ",
-    style: "black",
+    style: "black"
   },
 ];
 
