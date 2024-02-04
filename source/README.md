@@ -13,7 +13,6 @@ It supports multi-style phrases and allows you to customize the appearance and s
   * [Customize animation🪄](#customize-animation)
 * [Example code👀](#example-code-)
 * [Live demo🎞️](#live-demo-)
-* [Contributing⌨️](CONTRIBUTING.md)
 
 ### How to install 📩
 
