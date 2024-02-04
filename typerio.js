@@ -1,3 +1,5 @@
+const Animations = ["▮", "▯"];
+
 const renderText = async (input, target, speed, clear) => {
   const isOdd = (number) => number % 2 !== 0;
 
@@ -15,9 +17,9 @@ const renderText = async (input, target, speed, clear) => {
           respond += letter;
           let respondToSend = respond;
           if (isOdd(i) & (i !== letters.length - 1)) {
-            respondToSend += "▮";
+            respondToSend += `${Animations[0]}`;
           } else if (i !== letters.length - 1) {
-            respondToSend += "▯";
+            respondToSend += `${Animations[1]}`;
           }
           displayText(respondToSend, target);
           if (i === letters.length - 1) resolve();
@@ -41,4 +43,4 @@ const renderText = async (input, target, speed, clear) => {
   }
 };
 
-export { renderText };
+export { renderText, Animations };
