@@ -4,27 +4,37 @@
 
 It supports multi-style phrases and allows you to customize the appearance and speed of text display.
 
-## How to install 📩
+## Getting started
+
+* [How to install📩](#how-to-install-📩)
+* [How to use🤷‍♂️](#how-to-use-🤷‍♂️)
+  * [JavaScript💛](#javascript💛)
+  * [CSS💙](#css💙)
+  * [Customize animation🪄](#customize-animation🪄)
+* [Example code👀](#example-code-👀)
+* [Live demo🎞️](#live-demo-🎞️)
+
+### How to install 📩
 
 ```console
 $ npm install typerio
 ```
 
-## How to use 🤷‍♂️
+### How to use 🤷‍♂️
 
-Firstly import Typerio into your project.
+To get started, you have to import _`renderText`_ function to your project.
 
 ```javascript
-import * as typerio from 'typerio'
+import { renderText } from 'typerio'
 ```
 
 Now you can use _`renderText()`_ function to - as it stands - render a text.
 
 ```javascript
-typerio.renderText(input, target, speed, clear);
+renderText(input, target, speed, clear);
 ```
 
-### JavaScript💛
+#### JavaScript💛
 
 As you can see, function takes 4 arguments:
 
@@ -43,15 +53,32 @@ And last, but not least, _`input`_ which takes an array of objects with the foll
   },
 ];
 ```
->Important note!
->
-> _`renderText()`_ is an async function. In case of using it on the same target more than one time in a row it is recommended to use it with _`await`_.
 
-### CSS💙
+><span style="color:#d12e2e; font-weight: bold;">_Important note!_</span>
+>
+>_`renderText()`_<span style="color:#bd4444;">  is an async function. In case of using it on the same target more than one time in a row it is recommended to use it with </span>_`await`_<span style="color:#bd4444;">.</span>
+
+
+#### CSS💙
 
 Typerio uses _`typerio-`_ prefix for its classes, so to style the text, you have to declare them inside of your CSS code. Simple as that.
 
-## Example code 👀
+#### Customize animation🪄
+
+To customize the typing animation use:
+
+```javascript
+import { textAnimation } from 'typerio'
+
+textAnimation.setFrames(['frame1', 'frame2']);
+```
+You can also get the current animation frames:
+
+```javascript
+textAnimation.getFrames(); //returns [frame1, frame2]
+```
+
+### Example code 👀
 
 ```javascript
 //JavaScript
@@ -78,9 +105,9 @@ const anotherText = [
   },
 ];
 
-await typerio.renderText(newText, targetElement, 50, true);
+await renderText(newText, targetElement, 50, true);
 
-typerio.renderText(anotherText, targetElement, 50, false);
+renderText(anotherText, targetElement, 50, false);
 ```
 
 ```scss
@@ -98,3 +125,6 @@ typerio.renderText(anotherText, targetElement, 50, false);
   }
 }
 ```
+### Live demo 🎞️
+
+* [Codepen 🖊️](https://codepen.io/pasiastazebra/pen/XWGqBLJ)
