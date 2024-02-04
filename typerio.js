@@ -27,9 +27,9 @@ const renderText = async (input, target, speed, clear) => {
           respond += letter;
           let respondToSend = respond;
           if (isOdd(i) & (i !== letters.length - 1)) {
-            respondToSend += `${Animations[0]}`;
+            respondToSend += `${textAnimation.frames[0]}`;
           } else if (i !== letters.length - 1) {
-            respondToSend += `${Animations[1]}`;
+            respondToSend += `${textAnimation.frames[1]}`;
           }
           displayText(respondToSend, target);
           if (i === letters.length - 1) resolve();
