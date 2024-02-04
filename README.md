@@ -7,9 +7,9 @@ It supports multi-style phrases and allows you to customize the appearance and s
 ## Getting started
 
 * [How to install📩](#how-to-install-)
-* [How to use🤷‍♂️](#how-to-use-)
+* [How to use🤷‍♂️](#how-to-use)
   * [JavaScript💛](#javascript)
-  * [CSS💙](#css💙)
+  * [CSS💙](#css)
   * [Customize animation🪄](#customize-animation)
 * [Example code👀](#example-code-)
 * [Live demo🎞️](#live-demo-)
