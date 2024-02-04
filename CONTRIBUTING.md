@@ -27,6 +27,7 @@ When making changes, please follow these guidelines:
 - The code should be self-documenting, but comments are also welcome.
 - Prettier is required with the default configuration.
 - For CSS classes, the plugin prefixes all internal classes with "typerio-", e.g., "typerio-black".
+- Avoid bumping version.
 
 ## Submitting changes 📩
 
