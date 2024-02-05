@@ -5,8 +5,16 @@ const textAnimation = {
     this.frames = [frame1, frame2];
   },
 
+  setPrefix(prefix) {
+    this.prefix = prefix;
+  },
+
   getFrames() {
     return this.frames;
+  },
+
+  getPrefix() {
+    return this.prefix;
   },
 };
 
