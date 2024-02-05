@@ -57,9 +57,11 @@ And last, but not least, _`input`_ which takes an array of objects with the foll
 ];
 ```
 
-><span style="color:#d12e2e; font-weight: bold;">_Important note!_</span>
+>_Important note!_
 >
->_`renderText()`_<span style="color:#bd4444;">  is an async function. In case of using it on the same target more than one time in a row it is recommended to use it with </span>_`await`_<span style="color:#bd4444;">.</span>
+>_`renderText()`_  is an async function. In case of using it on the same target more than one time in a row it is recommended to use it with _`await`_.
+>
+>With introduction of the prefixes it is now strongly recommended to set the fist `isInline` property to `true`.
 
 
 #### CSS💙
@@ -98,6 +100,13 @@ You can also get the current default prefix if you need:
 
 ```javascript
 textAnimation.getDefaultPrefix(); //returns string
+```
+
+There is also possible to style the prefix using 
+```css 
+.typerio-prefix {
+
+}
 ```
 
 ### Example code 👀
