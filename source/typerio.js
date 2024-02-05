@@ -1,17 +1,32 @@
 const textAnimation = {
   frames: ["▮", "▯"],
+  prefix: "",
 
   setFrames([frame1, frame2]) {
     this.frames = [frame1, frame2];
   },
 
+  setDefaultPrefix(prefix) {
+    this.prefix = prefix;
+  },
+
   getFrames() {
     return this.frames;
   },
+
+  getDefaultPrefix() {
+    return this.prefix;
+  },
 };
 
-const renderText = async (input, target, speed, clear) => {
+const renderText = async (input, target, speed, willClear, prefix) => {
   const isOdd = (number) => number % 2 !== 0;
+
+  const clearText = (needToClear, targetElement) => {
+    if (needToClear) {
+      targetElement.innerHTML = "";
+    }
+  };
 
   const displayText = (inputString, target) => {
     target.innerHTML = `${inputString}`;
@@ -27,9 +42,9 @@ const renderText = async (input, target, speed, clear) => {
           respond += letter;
           let respondToSend = respond;
           if (isOdd(i) & (i !== letters.length - 1)) {
-            respondToSend += `${textAnimation.frames[0]}`;
+            respondToSend += `${textAnimation.getFrames()[0]}`;
           } else if (i !== letters.length - 1) {
-            respondToSend += `${textAnimation.frames[1]}`;
+            respondToSend += `${textAnimation.getFrames()[1]}`;
           }
           displayText(respondToSend, target);
           if (i === letters.length - 1) resolve();
@@ -38,19 +53,36 @@ const renderText = async (input, target, speed, clear) => {
     });
   };
 
-  clear ? (target.innerHTML = "") : null;
-  for (let sentenceObject of input) {
-    let newPhrase;
-    if (sentenceObject.isInline === false) {
-      newPhrase = document.createElement("p");
-    } else {
-      newPhrase = document.createElement("span");
-    }
-    newPhrase.className = `typerio-${sentenceObject.style}`;
-    target.appendChild(newPhrase);
+  const render = (inputTable, targetElement, typingSpeed) => {
+    return new Promise(async (resolve) => {
+      for (let sentenceObject of inputTable) {
+        let newPhrase;
+        if (sentenceObject.isInline === false) {
+          newPhrase = document.createElement("p");
+        } else {
+          newPhrase = document.createElement("span");
+        }
+        newPhrase.className = `typerio-${sentenceObject.style}`;
+        targetElement.appendChild(newPhrase);
 
-    await write(sentenceObject.text, newPhrase, speed);
-  }
+        await write(sentenceObject.text, newPhrase, typingSpeed);
+      }
+      resolve();
+    });
+  };
+
+  const addPrefix = (inputTable, prefix = textAnimation.getDefaultPrefix()) => {
+    if (prefix !== "") {
+      let newTable = [...inputTable];
+      const prefixObject = { text: prefix, style: "prefix", isInline: true };
+      newTable.unshift(prefixObject);
+      return newTable;
+    } else return inputTable;
+  };
+
+  clearText(willClear, target);
+
+  await render(addPrefix(input, prefix), target, speed);
 };
 
 export { renderText, textAnimation };
