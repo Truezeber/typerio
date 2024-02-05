@@ -1,5 +1,6 @@
 const textAnimation = {
   frames: ["▮", "▯"],
+  prefix: "",
 
   setFrames([frame1, frame2]) {
     this.frames = [frame1, frame2];
@@ -22,7 +23,7 @@ const renderText = async (input, target, speed, clear) => {
   const isOdd = (number) => number % 2 !== 0;
 
   const displayText = (inputString, target) => {
-    target.innerHTML = `${inputString}`;
+    target.innerHTML = `${textAnimation.prefix}${inputString}`;
   };
 
   const write = (inputString, target, speed) => {
