@@ -11,6 +11,7 @@ It supports multi-style phrases and allows you to customize the appearance and s
   * [JavaScript💛](#javascript)
   * [CSS💙](#css💙)
   * [Customize animation🪄](#customize-animation)
+  * [Customize prefix🎼](#customize-prefix)
 * [Example code👀](#example-code-)
 * [Live demo🎞️](#live-demo-)
 
@@ -31,16 +32,17 @@ import { renderText } from 'typerio'
 Now you can use _`renderText()`_ function to - as it stands - render a text.
 
 ```javascript
-renderText(input, target, speed, clear);
+renderText(input, target, speed, willClear, prefix);
 ```
 
 #### JavaScript💛
 
-As you can see, function takes 4 arguments:
+As you can see, function takes 5 arguments:
 
 - _`target`_ - HTML element where text will be typed;
 - _`speed`_ - Speed of typing effect in ms;
-- _`clear`_ - If true, every element inside of the target will be deleted;
+- _`willClear`_ - If true, every element inside of the target will be deleted;
+- _`prefix`_ - Optional, custom prefix;
 
 And last, but not least, _`input`_ which takes an array of objects with the following properties:
 
@@ -78,6 +80,25 @@ You can also get the current animation frames:
 textAnimation.getFrames(); //returns [frame1, frame2]
 ```
 
+#### Customize prefix🎼
+
+There are two ways to customize your prefix. First one, described at the beginning, is to pass it directly to the `renderText()` function:
+
+```javascript
+renderText(inputObject, targetHTML, 50, true, '>');
+```
+But as you can read upper, it's an optional argument, and when not provided, function will render the text using default prefix if there is declared one (defaulty it's not). To do it simply use:
+
+```javascript
+textAnimation.setDefaultPrefix('prefix');
+```
+
+You can also get the current default prefix if you need:
+
+```javascript
+textAnimation.getDefaultPrefix(); //returns string
+```
+
 ### Example code 👀
 
 ```javascript
@@ -107,7 +128,7 @@ const anotherText = [
 
 await renderText(newText, targetElement, 50, true);
 
-renderText(anotherText, targetElement, 50, false);
+renderText(anotherText, targetElement, 50, false, '->');
 ```
 
 ```scss
