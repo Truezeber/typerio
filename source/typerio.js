@@ -1,6 +1,6 @@
 const textAnimation = {
   frames: ["▮", "▯"],
-  prefix: "()",
+  prefix: "",
 
   setFrames([frame1, frame2]) {
     this.frames = [frame1, frame2];
@@ -72,10 +72,12 @@ const renderText = async (input, target, speed, willClear, prefix) => {
   };
 
   const addPrefix = (inputTable, prefix = textAnimation.getDefaultPrefix()) => {
-    let newTable = [...inputTable];
-    const prefixObject = { text: prefix, style: "prefix", isInline: true };
-    newTable.unshift(prefixObject);
-    return newTable;
+    if (prefix !== "") {
+      let newTable = [...inputTable];
+      const prefixObject = { text: prefix, style: "prefix", isInline: true };
+      newTable.unshift(prefixObject);
+      return newTable;
+    } else return inputTable;
   };
 
   clearText(willClear, target);
