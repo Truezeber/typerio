@@ -1,18 +1,51 @@
+/**
+ * Configuration object.
+ */
+
 const textAnimation = {
+  /**
+   * Animation frames.
+   * @type {Array<string>}
+   */
   frames: ["▮", "▯"],
+
+  /**
+   * Default prefix.
+   * @type {string}
+   */
   prefix: "",
+
+  /**
+   * Set animation frames.
+   * @param {Array<string>} frames - New frames.
+   */
 
   setFrames([frame1, frame2]) {
     this.frames = [frame1, frame2];
   },
 
+  /**
+   * Set default prefix.
+   * @param {string} prefix - New default prefix.
+   */
+
   setDefaultPrefix(prefix) {
     this.prefix = prefix;
   },
 
+  /**
+   * Returns animation frames.
+   * @returns {Array<string>} Animation frames.
+   */
+
   getFrames() {
     return this.frames;
   },
+
+  /**
+   * Returns default prefix.
+   * @returns {string} Default prefix.
+   */
 
   getDefaultPrefix() {
     return this.prefix;
