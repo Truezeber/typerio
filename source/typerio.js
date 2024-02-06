@@ -1,23 +1,65 @@
+/**
+ * Configuration object.
+ */
+
 const textAnimation = {
+  /**
+   * Animation frames.
+   * @type {Array<string>}
+   */
   frames: ["▮", "▯"],
+
+  /**
+   * Default prefix.
+   * @type {string}
+   */
   prefix: "",
+
+  /**
+   * Set animation frames.
+   * @param {Array<string>} frames - New frames.
+   */
 
   setFrames([frame1, frame2]) {
     this.frames = [frame1, frame2];
   },
 
+  /**
+   * Set default prefix.
+   * @param {string} prefix - New default prefix.
+   */
+
   setDefaultPrefix(prefix) {
     this.prefix = prefix;
   },
+
+  /**
+   * Returns animation frames.
+   * @returns {Array<string>} Animation frames.
+   */
 
   getFrames() {
     return this.frames;
   },
 
+  /**
+   * Returns default prefix.
+   * @returns {string} Default prefix.
+   */
+
   getDefaultPrefix() {
     return this.prefix;
   },
 };
+
+/**
+ * Render typing animation.
+ * @param {Object} input Input object
+ * @param {HTMLElement} target Target HTML element
+ * @param {number} speed Speed of typing in ms
+ * @param {boolean} willClear If true, targets content will be deleted
+ * @param {string} prefix (Optional) Custom prefix
+ */
 
 const renderText = async (input, target, speed, willClear, prefix) => {
   const isOdd = (number) => number % 2 !== 0;
