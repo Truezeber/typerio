@@ -149,7 +149,7 @@ const typerioRender = async (
       let newTable = [...inputTable];
       const prefixObject = {
         text: prefix,
-        style: "prefix",
+        style: "typerioPrefix",
         HTMLelement: "span",
       };
       newTable.unshift(prefixObject);
