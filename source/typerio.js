@@ -36,6 +36,17 @@ const typerioConfig = {
 
   clearingPolicy: true,
 
+  /**
+   * Set default configuration values.
+   *
+   * @param {Object} config - Configuration object.
+   * @param {Array<string>} config.newFrames - New animation frames.
+   * @param {string} config.newPrefix - New prefix.
+   * @param {number} config.newSpeed - New typing speed in ms.
+   * @param {HTMLElement} config.newTarget - New target HTML element.
+   * @param {boolean} config.newClearingPolicy - New clearing policy.
+   */
+
   setDefaultConfig({
     newFrames = this.frames,
     newPrefix = this.prefix,
@@ -49,6 +60,12 @@ const typerioConfig = {
     this.target = newTarget;
     this.clearingPolicy = newClearingPolicy;
   },
+
+  /**
+   * Returns actuall default configuration.
+   *
+   * @returns {Object} Configuration object.
+   */
 
   getDefaultConfig() {
     return {
