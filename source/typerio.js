@@ -137,12 +137,7 @@ const typerioRender = async (
   const render = (inputTable, targetElement, typingSpeed) => {
     return new Promise(async (resolve) => {
       for (let sentenceObject of inputTable) {
-        let newPhrase;
-        if (sentenceObject.isInline === false) {
-          newPhrase = document.createElement("p");
-        } else {
-          newPhrase = document.createElement("span");
-        }
+        let newPhrase = document.createElement(`${sentenceObject.HTMLelement}`);
         newPhrase.className = `typerio-${sentenceObject.style}`;
         targetElement.appendChild(newPhrase);
 
@@ -155,7 +150,11 @@ const typerioRender = async (
   const addPrefix = (inputTable, prefixValue) => {
     if (prefixValue !== "") {
       let newTable = [...inputTable];
-      const prefixObject = { text: prefix, style: "prefix", isInline: true };
+      const prefixObject = {
+        text: prefix,
+        style: "prefix",
+        HTMLelement: "span",
+      };
       newTable.unshift(prefixObject);
       return newTable;
     } else return inputTable;
