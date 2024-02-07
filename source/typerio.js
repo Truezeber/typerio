@@ -4,7 +4,7 @@
 
 const typerioConfig = {
   /**
-   * Animation frames.
+   * Default animation frames.
    * @type {Array<string>}
    */
   frames: ["▮", "▯"],
@@ -37,11 +37,11 @@ const typerioConfig = {
   shouldClearText: true,
 
   /**
-   * Set animation frames.
+   * Set default animation frames.
    * @param {Array<string>} frames - New frames.
    */
 
-  setFrames([frame1, frame2]) {
+  setDefaultFrames([frame1, frame2]) {
     this.frames = [frame1, frame2];
   },
 
@@ -59,7 +59,7 @@ const typerioConfig = {
    * @param {number} speed - Typing speed in ms.
    */
 
-  setTypingSpeed(speed) {
+  setDefaultTypingSpeed(speed) {
     this.speed = speed;
   },
 
@@ -77,16 +77,16 @@ const typerioConfig = {
    * @param {boolean} shouldClearText - Clearing policy.
    */
 
-  setDefaultTarget(shouldClearText) {
+  setDefaultClearingPolicy(shouldClearText) {
     this.shouldClearText = shouldClearText;
   },
 
   /**
-   * Returns animation frames.
+   * Returns default animation frames.
    * @returns {Array<string>} Animation frames.
    */
 
-  getFrames() {
+  getDefaultFrames() {
     return this.frames;
   },
 
@@ -104,7 +104,7 @@ const typerioConfig = {
    * @returns {number} Typing speed in ms.
    */
 
-  getFrames() {
+  getDefaultTypingSpeed() {
     return this.speed;
   },
 
@@ -113,7 +113,7 @@ const typerioConfig = {
    * @returns {Object} HTML element.
    */
 
-  getTarget() {
+  getDefaultTarget() {
     return this.target;
   },
 
@@ -122,7 +122,7 @@ const typerioConfig = {
    * @returns {boolean} Clearing policy.
    */
 
-  getTarget() {
+  getDefaultClearingPolicy() {
     return this.shouldClearText;
   },
 };
