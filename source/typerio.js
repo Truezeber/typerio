@@ -2,9 +2,9 @@
  * Configuration object.
  */
 
-const textAnimation = {
+const typerioConfig = {
   /**
-   * Animation frames.
+   * Default animation frames.
    * @type {Array<string>}
    */
   frames: ["▮", "▯"],
@@ -16,65 +16,102 @@ const textAnimation = {
   prefix: "",
 
   /**
-   * Set animation frames.
-   * @param {Array<string>} frames - New frames.
+   * Default speed.
+   * @type {number}
    */
 
-  setFrames([frame1, frame2]) {
-    this.frames = [frame1, frame2];
+  speed: 75,
+
+  /**
+   * Default target.
+   * @type {Object}
+   */
+
+  target: {},
+
+  /**
+   * Default clearing policy.
+   * @type {boolean}
+   */
+
+  clearingPolicy: true,
+
+  /**
+   * Set default configuration values.
+   *
+   * @param {Object} config - Configuration object.
+   * @param {Array<string>} config.newFrames - New animation frames.
+   * @param {string} config.newPrefix - New prefix.
+   * @param {number} config.newSpeed - New typing speed in ms.
+   * @param {HTMLElement} config.newTarget - New target HTML element.
+   * @param {boolean} config.newClearingPolicy - New clearing policy.
+   */
+
+  setDefaultConfig({
+    newFrames = this.frames,
+    newPrefix = this.prefix,
+    newSpeed = this.speed,
+    newTarget = this.target,
+    newClearingPolicy = this.clearingPolicy,
+  }) {
+    this.frames = newFrames;
+    this.prefix = newPrefix;
+    this.speed = newSpeed;
+    this.target = newTarget;
+    this.clearingPolicy = newClearingPolicy;
   },
 
   /**
-   * Set default prefix.
-   * @param {string} prefix - New default prefix.
+   * Returns actuall default configuration.
+   *
+   * @returns {Object} Configuration object.
    */
 
-  setDefaultPrefix(prefix) {
-    this.prefix = prefix;
-  },
-
-  /**
-   * Returns animation frames.
-   * @returns {Array<string>} Animation frames.
-   */
-
-  getFrames() {
-    return this.frames;
-  },
-
-  /**
-   * Returns default prefix.
-   * @returns {string} Default prefix.
-   */
-
-  getDefaultPrefix() {
-    return this.prefix;
+  getDefaultConfig() {
+    return {
+      frames: this.frames,
+      prefix: this.prefix,
+      speed: this.speed,
+      target: this.target,
+      clearingPolicy: this.clearingPolicy,
+    };
   },
 };
 
 /**
- * Render typing animation.
- * @param {Object} input Input object
- * @param {HTMLElement} target Target HTML element
- * @param {number} speed Speed of typing in ms
- * @param {boolean} willClear If true, targets content will be deleted
- * @param {string} prefix (Optional) Custom prefix
+ * Renders a typing animation.
+ * @param {Array} input - Input array.
+ * @param {Object} [options] - Custom options object (optional).
+ * @param {HTMLElement} [options.target] - Target HTML element.
+ * @param {number} [options.speed] - Speed of typing in ms.
+ * @param {boolean} [options.clearingPolicy] - If true, targets content will be deleted.
+ * @param {string} [options.prefix] - Custom prefix (optional).
+ * @param {Array} [options.frames] - Custom frames for animation (optional).
  */
 
-const renderText = async (input, target, speed, willClear, prefix) => {
+const typerioRender = async (
+  input,
+  {
+    frames = typerioConfig.frames,
+    prefix = typerioConfig.prefix,
+    speed = typerioConfig.speed,
+    target = typerioConfig.target,
+    clearingPolicy = typerioConfig.clearingPolicy,
+  } = typerioConfig.getDefaultConfig()
+) => {
   const isOdd = (number) => number % 2 !== 0;
 
-  const clearText = (needToClear, targetElement) => {
-    if (needToClear) {
+  const clearText = (clearingValue, targetElement) => {
+    if (clearingValue) {
       targetElement.innerHTML = "";
     }
   };
 
-  const displayText = (inputString, target) => {
-    target.innerHTML = `${inputString}`;
+  const displayText = (inputString, targetElement) => {
+    targetElement.innerText = `${inputString}`;
   };
 
-  const write = (inputString, target, speed) => {
+  const write = (inputString, targetElement, typingSpeed) => {
     return new Promise((resolve) => {
       const letters = inputString.split("");
       let respond = "";
@@ -84,13 +121,13 @@ const renderText = async (input, target, speed, willClear, prefix) => {
           respond += letter;
           let respondToSend = respond;
           if (isOdd(i) & (i !== letters.length - 1)) {
-            respondToSend += `${textAnimation.getFrames()[0]}`;
+            respondToSend += `${frames[0]}`;
           } else if (i !== letters.length - 1) {
-            respondToSend += `${textAnimation.getFrames()[1]}`;
+            respondToSend += `${frames[1]}`;
           }
-          displayText(respondToSend, target);
+          displayText(respondToSend, targetElement);
           if (i === letters.length - 1) resolve();
-        }, i * speed);
+        }, i * typingSpeed);
       });
     });
   };
@@ -98,13 +135,8 @@ const renderText = async (input, target, speed, willClear, prefix) => {
   const render = (inputTable, targetElement, typingSpeed) => {
     return new Promise(async (resolve) => {
       for (let sentenceObject of inputTable) {
-        let newPhrase;
-        if (sentenceObject.isInline === false) {
-          newPhrase = document.createElement("p");
-        } else {
-          newPhrase = document.createElement("span");
-        }
-        newPhrase.className = `typerio-${sentenceObject.style}`;
+        let newPhrase = document.createElement(`${sentenceObject.HTMLelement}`);
+        newPhrase.className = `typerio ${sentenceObject.style} siemanko`;
         targetElement.appendChild(newPhrase);
 
         await write(sentenceObject.text, newPhrase, typingSpeed);
@@ -113,18 +145,22 @@ const renderText = async (input, target, speed, willClear, prefix) => {
     });
   };
 
-  const addPrefix = (inputTable, prefix = textAnimation.getDefaultPrefix()) => {
-    if (prefix !== "") {
+  const addPrefix = (inputTable, prefixValue) => {
+    if (prefixValue !== "") {
       let newTable = [...inputTable];
-      const prefixObject = { text: prefix, style: "prefix", isInline: true };
+      const prefixObject = {
+        text: prefix,
+        style: "typerioPrefix",
+        HTMLelement: "span",
+      };
       newTable.unshift(prefixObject);
       return newTable;
     } else return inputTable;
   };
 
-  clearText(willClear, target);
+  clearText(clearingPolicy, target);
 
   await render(addPrefix(input, prefix), target, speed);
 };
 
-export { renderText, textAnimation };
+export { typerioRender, typerioConfig };
