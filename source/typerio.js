@@ -98,9 +98,6 @@ const typerioRender = async (
     clearingPolicy = typerioConfig.clearingPolicy,
   } = typerioConfig.getDefaultConfig()
 ) => {
-  console.log(typerioConfig.getDefaultConfig());
-  console.log({ input, prefix, speed, target, clearingPolicy });
-
   const isOdd = (number) => number % 2 !== 0;
 
   const clearText = (clearingValue, targetElement) => {
