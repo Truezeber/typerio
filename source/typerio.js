@@ -34,96 +34,30 @@ const typerioConfig = {
    * @type {boolean}
    */
 
-  shouldClearText: true,
+  clearingPolicy: true,
 
-  /**
-   * Set default animation frames.
-   * @param {Array<string>} frames - New frames.
-   */
-
-  setDefaultFrames([frame1, frame2]) {
-    this.frames = [frame1, frame2];
+  setDefaultConfig({
+    newFrames = this.frames,
+    newPrefix = this.prefix,
+    newSpeed = this.speed,
+    newTarget = this.target,
+    newClearingPolicy = this.clearingPolicy,
+  }) {
+    this.frames = newFrames;
+    this.prefix = newPrefix;
+    this.speed = newSpeed;
+    this.target = newTarget;
+    this.clearingPolicy = newClearingPolicy;
   },
 
-  /**
-   * Set default prefix.
-   * @param {string} prefix - New default prefix.
-   */
-
-  setDefaultPrefix(prefix) {
-    this.prefix = prefix;
-  },
-
-  /**
-   * Set default typing speed.
-   * @param {number} speed - Typing speed in ms.
-   */
-
-  setDefaultTypingSpeed(speed) {
-    this.speed = speed;
-  },
-
-  /**
-   * Set default target.
-   * @param {Object} target - HTML element.
-   */
-
-  setDefaultTarget(target) {
-    this.target = target;
-  },
-
-  /**
-   * Set default clearing policy.
-   * @param {boolean} shouldClearText - Clearing policy.
-   */
-
-  setDefaultClearingPolicy(shouldClearText) {
-    this.shouldClearText = shouldClearText;
-  },
-
-  /**
-   * Returns default animation frames.
-   * @returns {Array<string>} Animation frames.
-   */
-
-  getDefaultFrames() {
-    return this.frames;
-  },
-
-  /**
-   * Returns default prefix.
-   * @returns {string} Default prefix.
-   */
-
-  getDefaultPrefix() {
-    return this.prefix;
-  },
-
-  /**
-   * Returns default typing speed.
-   * @returns {number} Typing speed in ms.
-   */
-
-  getDefaultTypingSpeed() {
-    return this.speed;
-  },
-
-  /**
-   * Returns default target object.
-   * @returns {Object} HTML element.
-   */
-
-  getDefaultTarget() {
-    return this.target;
-  },
-
-  /**
-   * Returns default clearing policy.
-   * @returns {boolean} Clearing policy.
-   */
-
-  getDefaultClearingPolicy() {
-    return this.shouldClearText;
+  getDefaultConfig() {
+    return {
+      frames: this.frames,
+      prefix: this.prefix,
+      speed: this.speed,
+      target: this.target,
+      clearingPolicy: this.clearingPolicy,
+    };
   },
 };
 
@@ -139,12 +73,7 @@ const typerioConfig = {
 
 const typerioRender = async (
   input,
-  {
-    target = typerioConfig.getDefaultTarget(),
-    speed = typerioConfig.getDefaultTypingSpeed(),
-    clearingPolicy = typerioConfig.getDefaultClearingPolicy(),
-    prefix = typerioConfig.getDefaultPrefix(),
-  } = {}
+  { target, speed, clearingPolicy, prefix } = typerioConfig.getDefaultConfig()
 ) => {
   const isOdd = (number) => number % 2 !== 0;
 
