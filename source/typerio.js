@@ -110,7 +110,7 @@ const typerioRender = async (
   };
 
   const displayText = (inputString, targetElement) => {
-    targetElement.innerHTML = `${inputString}`;
+    targetElement.innerText = `${inputString}`;
   };
 
   const write = (inputString, targetElement, typingSpeed) => {
