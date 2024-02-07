@@ -27,7 +27,7 @@ const typerioConfig = {
    * @type {Object}
    */
 
-  target: null,
+  target: {},
 
   /**
    * Default clearing policy.
@@ -144,7 +144,7 @@ const typerioRender = async (
     speed = typerioConfig.getDefaultTypingSpeed(),
     clearingPolicy = typerioConfig.getDefaultClearingPolicy(),
     prefix = typerioConfig.getDefaultPrefix(),
-  }
+  } = {}
 ) => {
   const isOdd = (number) => number % 2 !== 0;
 
@@ -168,9 +168,9 @@ const typerioRender = async (
           respond += letter;
           let respondToSend = respond;
           if (isOdd(i) & (i !== letters.length - 1)) {
-            respondToSend += `${textAnimation.getFrames()[0]}`;
+            respondToSend += `${typerioConfig.getDefaultFrames()[0]}`;
           } else if (i !== letters.length - 1) {
-            respondToSend += `${textAnimation.getFrames()[1]}`;
+            respondToSend += `${typerioConfig.getDefaultFrames()[1]}`;
           }
           displayText(respondToSend, targetElement);
           if (i === letters.length - 1) resolve();
