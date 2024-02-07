@@ -61,7 +61,7 @@ const typerioConfig = {
  * @param {string} prefix (Optional) Custom prefix
  */
 
-const renderText = async (input, target, speed, willClear, prefix) => {
+const typerioRender = async (input, target, speed, willClear, prefix) => {
   const isOdd = (number) => number % 2 !== 0;
 
   const clearText = (needToClear, targetElement) => {
@@ -127,4 +127,4 @@ const renderText = async (input, target, speed, willClear, prefix) => {
   await render(addPrefix(input, prefix), target, speed);
 };
 
-export { renderText, typerioConfig };
+export { typerioRender, typerioConfig };
