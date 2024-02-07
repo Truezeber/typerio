@@ -130,26 +130,30 @@ const typerioConfig = {
 /**
  * Render typing animation.
  * @param {Array} input Input array.
+ * @param {Object} options - Custom options object.
  * @param {HTMLElement} target Target HTML element.
  * @param {number} speed Speed of typing in ms.
- * @param {boolean} willClear If true, targets content will be deleted.
+ * @param {boolean} clearingPolicy If true, targets content will be deleted.
  * @param {string} prefix (Optional) Custom prefix.
  */
 
-const typerioRender = async (input, target, speed, willClear, prefix) => {
+const typerioRender = async (
+  input,
+  { target, speed, clearingPolicy, prefix }
+) => {
   const isOdd = (number) => number % 2 !== 0;
 
-  const clearText = (needToClear, targetElement) => {
-    if (needToClear) {
+  const clearText = (clearingValue, targetElement) => {
+    if (clearingValue) {
       targetElement.innerHTML = "";
     }
   };
 
-  const displayText = (inputString, target) => {
-    target.innerHTML = `${inputString}`;
+  const displayText = (inputString, targetElement) => {
+    targetElement.innerHTML = `${inputString}`;
   };
 
-  const write = (inputString, target, speed) => {
+  const write = (inputString, targetElement, typingSpeed) => {
     return new Promise((resolve) => {
       const letters = inputString.split("");
       let respond = "";
@@ -163,9 +167,9 @@ const typerioRender = async (input, target, speed, willClear, prefix) => {
           } else if (i !== letters.length - 1) {
             respondToSend += `${textAnimation.getFrames()[1]}`;
           }
-          displayText(respondToSend, target);
+          displayText(respondToSend, targetElement);
           if (i === letters.length - 1) resolve();
-        }, i * speed);
+        }, i * typingSpeed);
       });
     });
   };
@@ -188,8 +192,11 @@ const typerioRender = async (input, target, speed, willClear, prefix) => {
     });
   };
 
-  const addPrefix = (inputTable, prefix = textAnimation.getDefaultPrefix()) => {
-    if (prefix !== "") {
+  const addPrefix = (
+    inputTable,
+    prefixValue = textAnimation.getDefaultPrefix()
+  ) => {
+    if (prefixValue !== "") {
       let newTable = [...inputTable];
       const prefixObject = { text: prefix, style: "prefix", isInline: true };
       newTable.unshift(prefixObject);
@@ -197,7 +204,7 @@ const typerioRender = async (input, target, speed, willClear, prefix) => {
     } else return inputTable;
   };
 
-  clearText(willClear, target);
+  clearText(clearingPolicy, target);
 
   await render(addPrefix(input, prefix), target, speed);
 };
