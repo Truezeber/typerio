@@ -16,6 +16,20 @@ const typerioConfig = {
   prefix: "",
 
   /**
+   * Default speed.
+   * @type {number}
+   */
+
+  speed: 75,
+
+  /**
+   * Default target.
+   * @type {Object}
+   */
+
+  target: null,
+
+  /**
    * Set animation frames.
    * @param {Array<string>} frames - New frames.
    */
@@ -34,6 +48,24 @@ const typerioConfig = {
   },
 
   /**
+   * Set default typing speed.
+   * @param {number} speed - Typing speed in ms.
+   */
+
+  setTypingSpeed(speed) {
+    this.speed = speed;
+  },
+
+  /**
+   * Set default target.
+   * @param {Object} target - HTML element.
+   */
+
+  setDefaultTarget(target) {
+    this.target = target;
+  },
+
+  /**
    * Returns animation frames.
    * @returns {Array<string>} Animation frames.
    */
@@ -49,6 +81,24 @@ const typerioConfig = {
 
   getDefaultPrefix() {
     return this.prefix;
+  },
+
+  /**
+   * Returns default typing speed.
+   * @returns {number} Typing speed in ms.
+   */
+
+  getFrames() {
+    return this.speed;
+  },
+
+  /**
+   * Returns default target object.
+   * @returns {Object} HTML element.
+   */
+
+  getTarget() {
+    return this.target;
   },
 };
 
