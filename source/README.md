@@ -23,6 +23,10 @@ $ npm install typerio
 
 ### How to use 🤷‍♂️
 
+> Important message!
+> 
+> Version ^2.0.0 is not compatible with previous versions. Looking for docs for 1.5.0? [Documentation for version 1.5.0 · pasiastazebra/typerio Wiki · GitHub](https://github.com/pasiastazebra/typerio/wiki/Documentation-for-version-1.5.0)
+
 To get started, you have to import _`renderText`_ function to your project.
 
 ```javascript
@@ -33,11 +37,11 @@ Now you can use _`typerioRender()`_ function to - as it stands - render a text.
 
 ```javascript
 typerioRender(input, {
-  frames,
-  prefix,
-  speed,
-  target,
-  clearingPolicy,
+    frames,
+    prefix,
+    speed,
+    target,
+    clearingPolicy
 });
 ```
 
@@ -46,6 +50,7 @@ typerioRender(input, {
 As you can see, function takes a lot of arguments. But don't panic, let's take a look at them really quick:
 
 - _`input`_ is an array of objects with the following properties:
+  
 
 ```javascript
 {
@@ -56,10 +61,15 @@ As you can see, function takes a lot of arguments. But don't panic, let's take a
 ```
 
 - `frames` - Array of 2 string which will be used as an animation.
+  
 - `prefix` - String placed at the beggining of the rendered text.
+  
 - `speed` - Typing animation speed in ms.
+  
 - `target` - HTML element inside of which animation will be rendered.
+  
 - `clearingPolicy` - Boolean value, if true all content inside of the target will be deleted.
+  
 
 > Note that every arguments besides `input` need to be parsed as one object
 
@@ -67,20 +77,14 @@ As you can see, function takes a lot of arguments. But don't panic, let's take a
 
 #### CSS💙
 
-Typerio uses _`typerio`_ as default class for every element, _`typerioPrefix`_ as class for its prefix and classes provided as `style` via input array. To style it, simply declare them inside of your CSS.
+Typerio uses _`typerio`_ as default class for every element, *`typerioPrefix`* as class for its prefix and classes provided as `style` via input array. To style it, simply declare them inside of your CSS.
 
 #### Customize default configuration🪄
 
 Providing the same data as an configuration object in `typerioRender()` function would be a nuisance. That's why version `2.0.0` introduced configuration object which allows you to set the default values which will be used, if you won't provide them via `typerioRender()` function. To change them you can simply use
 
 ```javascript
-typerioConfig.setDefaultConfig({
-  newFrames,
-  newPrefix,
-  newSpeed,
-  newTarget,
-  newClearingPolicy,
-});
+typerioConfig.setDefaultConfig({newFrames, newPrefix, newSpeed, newTarget, newClearingPolicy});;
 ```
 
 As you can see, there are the same arguments as in configuration object. You can also get the default config object using:
@@ -125,30 +129,30 @@ button.addEventListener("click", async () => {
 ```scss
 //SCSS
 
-.typerio {
-  &.typerioPrefix {
-    color: #6495ed;
-    font-style: italic;
+  .typerio {
+    &.typerioPrefix{
+      color: #6495ed;
+      font-style: italic;
+    }
+    &.red {
+      color: #cd5c5c;
+    }
+  
+    &.green {
+      color: #86af80;
+    }
+  
+    &.blue {
+      color: #6495ed;
+    }
+    &.white {
+      color: #ddccbb;
+    }
+    &.italic {
+      color: #ddccbb;
+      font-style: italic;
+    }
   }
-  &.red {
-    color: #cd5c5c;
-  }
-
-  &.green {
-    color: #86af80;
-  }
-
-  &.blue {
-    color: #6495ed;
-  }
-  &.white {
-    color: #ddccbb;
-  }
-  &.italic {
-    color: #ddccbb;
-    font-style: italic;
-  }
-}
 ```
 
 ### Live demo 🎞️
