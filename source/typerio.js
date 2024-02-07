@@ -129,11 +129,11 @@ const typerioConfig = {
 
 /**
  * Render typing animation.
- * @param {Object} input Input object
- * @param {HTMLElement} target Target HTML element
- * @param {number} speed Speed of typing in ms
- * @param {boolean} willClear If true, targets content will be deleted
- * @param {string} prefix (Optional) Custom prefix
+ * @param {Array} input Input array.
+ * @param {HTMLElement} target Target HTML element.
+ * @param {number} speed Speed of typing in ms.
+ * @param {boolean} willClear If true, targets content will be deleted.
+ * @param {string} prefix (Optional) Custom prefix.
  */
 
 const typerioRender = async (input, target, speed, willClear, prefix) => {
