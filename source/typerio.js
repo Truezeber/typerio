@@ -30,6 +30,13 @@ const typerioConfig = {
   target: null,
 
   /**
+   * Default clearing policy.
+   * @type {boolean}
+   */
+
+  shouldClearText: true,
+
+  /**
    * Set animation frames.
    * @param {Array<string>} frames - New frames.
    */
@@ -66,6 +73,15 @@ const typerioConfig = {
   },
 
   /**
+   * Set default clearing policy.
+   * @param {boolean} shouldClearText - Clearing policy.
+   */
+
+  setDefaultTarget(shouldClearText) {
+    this.shouldClearText = shouldClearText;
+  },
+
+  /**
    * Returns animation frames.
    * @returns {Array<string>} Animation frames.
    */
@@ -99,6 +115,15 @@ const typerioConfig = {
 
   getTarget() {
     return this.target;
+  },
+
+  /**
+   * Returns default clearing policy.
+   * @returns {boolean} Clearing policy.
+   */
+
+  getTarget() {
+    return this.shouldClearText;
   },
 };
 
