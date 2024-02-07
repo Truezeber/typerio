@@ -73,8 +73,17 @@ const typerioConfig = {
 
 const typerioRender = async (
   input,
-  { target, speed, clearingPolicy, prefix } = typerioConfig.getDefaultConfig()
+  {
+    frames = typerioConfig.frames,
+    prefix = typerioConfig.prefix,
+    speed = typerioConfig.speed,
+    target = typerioConfig.target,
+    clearingPolicy = typerioConfig.clearingPolicy,
+  } = typerioConfig.getDefaultConfig()
 ) => {
+  console.log(typerioConfig.getDefaultConfig());
+  console.log({ input, prefix, speed, target, clearingPolicy });
+
   const isOdd = (number) => number % 2 !== 0;
 
   const clearText = (clearingValue, targetElement) => {
@@ -97,9 +106,9 @@ const typerioRender = async (
           respond += letter;
           let respondToSend = respond;
           if (isOdd(i) & (i !== letters.length - 1)) {
-            respondToSend += `${typerioConfig.getDefaultFrames()[0]}`;
+            respondToSend += `${frames[0]}`;
           } else if (i !== letters.length - 1) {
-            respondToSend += `${typerioConfig.getDefaultFrames()[1]}`;
+            respondToSend += `${frames[1]}`;
           }
           displayText(respondToSend, targetElement);
           if (i === letters.length - 1) resolve();
