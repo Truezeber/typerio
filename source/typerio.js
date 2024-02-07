@@ -79,13 +79,14 @@ const typerioConfig = {
 };
 
 /**
- * Render typing animation.
- * @param {Array} input Input array.
- * @param {Object} options - Custom options object.
- * @param {HTMLElement} target Target HTML element.
- * @param {number} speed Speed of typing in ms.
- * @param {boolean} clearingPolicy If true, targets content will be deleted.
- * @param {string} prefix (Optional) Custom prefix.
+ * Renders a typing animation.
+ * @param {Array} input - Input array.
+ * @param {Object} [options] - Custom options object (optional).
+ * @param {HTMLElement} [options.target] - Target HTML element.
+ * @param {number} [options.speed] - Speed of typing in ms.
+ * @param {boolean} [options.clearingPolicy] - If true, targets content will be deleted.
+ * @param {string} [options.prefix] - Custom prefix (optional).
+ * @param {Array} [options.frames] - Custom frames for animation (optional).
  */
 
 const typerioRender = async (
