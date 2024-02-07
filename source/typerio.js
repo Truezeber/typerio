@@ -2,7 +2,7 @@
  * Configuration object.
  */
 
-const textAnimation = {
+const typerioConfig = {
   /**
    * Animation frames.
    * @type {Array<string>}
@@ -127,4 +127,4 @@ const renderText = async (input, target, speed, willClear, prefix) => {
   await render(addPrefix(input, prefix), target, speed);
 };
 
-export { renderText, textAnimation };
+export { renderText, typerioConfig };
