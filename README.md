@@ -27,7 +27,7 @@ $ npm install typerio
 To get started, you have to import _`renderText`_ function to your project.
 
 ```javascript
-import { typerioRender } from "typerio";
+import { typerioRender } from 'typerio'
 ```
 
 Now you can use _`typerioRender()`_ function to - as it stands - render a text.
@@ -97,7 +97,7 @@ typerioConfig.getDefaultConfig();
 ```javascript
 //JavaScript
 
-import { typerioRender, typerioConfig } from `typerio`
+import { typerioRender, typerioConfig } from 'typerio'
 
 const outputWindow = document.querySelector(".window-console");
 const button = document.querySelector("button");

@@ -6,14 +6,14 @@ It supports multi-style phrases and allows you to customize the appearance and s
 
 ## Getting started
 
-* [How to install📩](#how-to-install-)
-* [How to use🤷‍♂️](#how-to-use-)
-  * [JavaScript💛](#javascript)
-  * [CSS💙](#css💙)
-  * [Customize animation🪄](#customize-animation)
-  * [Customize prefix🎼](#customize-prefix)
-* [Example code👀](#example-code-)
-* [Live demo🎞️](#live-demo-)
+- [How to install📩](#how-to-install-)
+- [How to use🤷‍♂️](#how-to-use)
+  - [JavaScript💛](#javascript)
+  - [CSS💙](#css)
+  - [Customize default configuration🪄](#customize-default-configuration)
+- [Example code👀](#example-code-)
+- [Live demo🎞️](#live-demo-)
+- [Documentation📙](https://github.com/pasiastazebra/typerio/wiki/Documentation-for-versions-2.x.x)
 
 ### How to install 📩
 
@@ -26,135 +26,131 @@ $ npm install typerio
 To get started, you have to import _`renderText`_ function to your project.
 
 ```javascript
-import { renderText } from 'typerio'
+import { typerioRender } from 'typerio'
 ```
 
-Now you can use _`renderText()`_ function to - as it stands - render a text.
+Now you can use _`typerioRender()`_ function to - as it stands - render a text.
 
 ```javascript
-renderText(input, target, speed, willClear, prefix);
+typerioRender(input, {
+  frames,
+  prefix,
+  speed,
+  target,
+  clearingPolicy,
+});
 ```
 
 #### JavaScript💛
 
-As you can see, function takes 5 arguments:
+As you can see, function takes a lot of arguments. But don't panic, let's take a look at them really quick:
 
-- _`target`_ - HTML element where text will be typed;
-- _`speed`_ - Speed of typing effect in ms;
-- _`willClear`_ - If true, every element inside of the target will be deleted;
-- _`prefix`_ - Optional, custom prefix;
-
-And last, but not least, _`input`_ which takes an array of objects with the following properties:
+- _`input`_ is an array of objects with the following properties:
 
 ```javascript
-[
-  {
-    text: "", //Text to be written
-    style: "", //Custom CSS class
-    isInline: true //If true input will be rendered as <span>
-  },
-];
+{
+    text: string, //Text which will be rendered.
+    style: string, //Custom CSS class.
+    HTMLelement: HTMLElement //HTML element inside of which text will be
+}                            //rendered. Usually p or span
 ```
 
->_Important note!_
->
->_`renderText()`_  is an async function. In case of using it on the same target more than one time in a row it is recommended to use it with _`await`_.
->
->With introduction of the prefixes it is now strongly recommended to set the fist `isInline` property to `true`.
+- `frames` - Array of 2 string which will be used as an animation.
+- `prefix` - String placed at the beggining of the rendered text.
+- `speed` - Typing animation speed in ms.
+- `target` - HTML element inside of which animation will be rendered.
+- `clearingPolicy` - Boolean value, if true all content inside of the target will be deleted.
 
+> Note that every arguments besides `input` need to be parsed as one object
+
+> `typerioRender()` is an asynchronic function. If you want to call it on the same target more than once in a row, you can use `await` to wait untill previous animation is completed.
 
 #### CSS💙
 
-Typerio uses _`typerio-`_ prefix for its classes, so to style the text, you have to declare them inside of your CSS code. Simple as that.
+Typerio uses _`typerio`_ as default class for every element, _`typerioPrefix`_ as class for its prefix and classes provided as `style` via input array. To style it, simply declare them inside of your CSS.
 
-#### Customize animation🪄
+#### Customize default configuration🪄
 
-To customize the typing animation use:
-
-```javascript
-import { textAnimation } from 'typerio'
-
-textAnimation.setFrames(['frame1', 'frame2']);
-```
-You can also get the current animation frames:
+Providing the same data as an configuration object in `typerioRender()` function would be a nuisance. That's why version `2.0.0` introduced configuration object which allows you to set the default values which will be used, if you won't provide them via `typerioRender()` function. To change them you can simply use
 
 ```javascript
-textAnimation.getFrames(); //returns [frame1, frame2]
+typerioConfig.setDefaultConfig({
+  newFrames,
+  newPrefix,
+  newSpeed,
+  newTarget,
+  newClearingPolicy,
+});
 ```
 
-#### Customize prefix🎼
-
-There are two ways to customize your prefix. First one, described at the beginning, is to pass it directly to the `renderText()` function:
+As you can see, there are the same arguments as in configuration object. You can also get the default config object using:
 
 ```javascript
-renderText(inputObject, targetHTML, 50, true, '>');
-```
-But as you can read upper, it's an optional argument, and when not provided, function will render the text using default prefix if there is declared one (defaulty it's not). To do it simply use:
-
-```javascript
-textAnimation.setDefaultPrefix('prefix');
+typerioConfig.getDefaultConfig();
 ```
 
-You can also get the current default prefix if you need:
-
-```javascript
-textAnimation.getDefaultPrefix(); //returns string
-```
-
-There is also possible to style the prefix using 
-```css 
-.typerio-prefix {
-
-}
-```
+> Please note, that the default target value is set to `{}`, which means that you have to declare this value in `typerioConfig` or pass it everytime via `typerioRender()` function.
 
 ### Example code 👀
 
 ```javascript
 //JavaScript
 
-const targetElement = document.getElementById("target");
+import { typerioRender, typerioConfig } from 'typerio'
 
-const newText = [
-  {
-    text: "This text is red! ",
-    style: "red",
-    isInline: false
-  },
-  {
-    text: "And this is blue! ",
-    style: "blue",
-    isInline: true
-  },
-];
+const outputWindow = document.querySelector(".window-console");
+const button = document.querySelector("button");
 
-const anotherText = [
-  {
-    text: "This text is black! ",
-    style: "black"
-  },
-];
+typerioConfig.setDefaultConfig({
+  newFrames: [".", ".."],
+  newPrefix: "x",
+  newSpeed: 20,
+  newTarget: outputWindow,
+  newClearingPolicy: false,
+});
 
-await renderText(newText, targetElement, 50, true);
+button.addEventListener("click", async () => {
+  const textInput = document.querySelector("input").value;
+  const styleInput = document.querySelector("select").value;
 
-renderText(anotherText, targetElement, 50, false, '->');
+  if (textInput !== "") {
+    const inputObject = [
+      { text: textInput, style: styleInput, HTMLelement: "span" },
+    ];
+    await typerioRender(inputObject, { prefix: "$", speed: "25" });
+  }
+});
 ```
 
 ```scss
 //SCSS
 
 .typerio {
-  &-red {
-    color: #fe0000;
+  &.typerioPrefix {
+    color: #6495ed;
+    font-style: italic;
   }
-  &-blue {
-    color: #0000ff;
+  &.red {
+    color: #cd5c5c;
   }
-  &-black {
-    color: #000000;
+
+  &.green {
+    color: #86af80;
+  }
+
+  &.blue {
+    color: #6495ed;
+  }
+  &.white {
+    color: #ddccbb;
+  }
+  &.italic {
+    color: #ddccbb;
+    font-style: italic;
   }
 }
 ```
+
 ### Live demo 🎞️
 
-* [Codepen 🖊️](https://codepen.io/pasiastazebra/pen/XWGqBLJ)
+- [Codepen 🖊️](https://codepen.io/pasiastazebra/pen/XWGqBLJ)
