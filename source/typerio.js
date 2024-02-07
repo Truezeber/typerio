@@ -139,7 +139,12 @@ const typerioConfig = {
 
 const typerioRender = async (
   input,
-  { target, speed, clearingPolicy, prefix }
+  {
+    target = typerioConfig.getDefaultTarget(),
+    speed = typerioConfig.getDefaultTypingSpeed(),
+    clearingPolicy = typerioConfig.getDefaultClearingPolicy(),
+    prefix = typerioConfig.getDefaultPrefix(),
+  }
 ) => {
   const isOdd = (number) => number % 2 !== 0;
 
@@ -192,10 +197,7 @@ const typerioRender = async (
     });
   };
 
-  const addPrefix = (
-    inputTable,
-    prefixValue = textAnimation.getDefaultPrefix()
-  ) => {
+  const addPrefix = (inputTable, prefixValue) => {
     if (prefixValue !== "") {
       let newTable = [...inputTable];
       const prefixObject = { text: prefix, style: "prefix", isInline: true };
