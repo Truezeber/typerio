@@ -29,7 +29,7 @@ $ npm install typerio
 > 
 > Version ^2.0.0 is not compatible with previous versions. Looking for docs for 1.5.0? [Documentation for version 1.5.0 · pasiastazebra/typerio Wiki · GitHub](https://github.com/pasiastazebra/typerio/wiki/Documentation-for-version-1.5.0)
 
-To get started, you have to import _`renderText`_ function to your project.
+To get started, you have to import _`typerioRender()`_ function to your project.
 
 ```javascript
 import { typerioRender } from 'typerio'
