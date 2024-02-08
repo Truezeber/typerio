@@ -136,7 +136,7 @@ const typerioRender = async (
     return new Promise(async (resolve) => {
       for (let sentenceObject of inputTable) {
         let newPhrase = document.createElement(`${sentenceObject.HTMLelement}`);
-        newPhrase.className = `typerio ${sentenceObject.style} siemanko`;
+        newPhrase.className = `typerio ${sentenceObject.style}`;
         targetElement.appendChild(newPhrase);
 
         await write(sentenceObject.text, newPhrase, typingSpeed);
