@@ -1,4 +1,5 @@
 # Typerio ⌨️
+![Typerio gif](https://cdn.discordapp.com/attachments/827239377926619170/1204944493892341810/Arc_EsqyfDm9aa.gif?ex=65d69302&is=65c41e02&hm=8517adf99c6341e75da99e5be692911ef714e5ed7bfda977d5bce908ee4d97b4&)
 
 **Typerio** is a simple, lightweight and easy-to-use npm package that writes text character by character, much like a terminal.
 
