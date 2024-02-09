@@ -82,11 +82,12 @@ const typerioConfig = {
  * Renders a typing animation.
  * @param {Array} input - Input array.
  * @param {Object} [options] - Custom options object (optional).
- * @param {HTMLElement} [options.target] - Target HTML element.
- * @param {number} [options.speed] - Speed of typing in ms.
- * @param {boolean} [options.clearingPolicy] - If true, targets content will be deleted.
+ * @param {HTMLElement} [options.target] - Target HTML element (optional).
+ * @param {number} [options.speed] - Speed of typing in ms (optional).
+ * @param {boolean} [options.clearingPolicy] - If true, targets content will be deleted (optional).
  * @param {string} [options.prefix] - Custom prefix (optional).
  * @param {Array} [options.frames] - Custom frames for animation (optional).
+ * @param {Function} callback - Callback to run after animation (optional).
  */
 
 const typerioRender = async (
@@ -97,7 +98,8 @@ const typerioRender = async (
     speed = typerioConfig.speed,
     target = typerioConfig.target,
     clearingPolicy = typerioConfig.clearingPolicy,
-  } = typerioConfig.getDefaultConfig()
+  } = typerioConfig.getDefaultConfig(),
+  callback = () => {}
 ) => {
   const isOdd = (number) => number % 2 !== 0;
 
@@ -161,6 +163,7 @@ const typerioRender = async (
   clearText(clearingPolicy, target);
 
   await render(addPrefix(input, prefix), target, speed);
+  callback();
 };
 
 export { typerioRender, typerioConfig };
