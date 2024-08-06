@@ -7,7 +7,7 @@ First off, thank you for considering contributing to Typerio. Seriously, I would
 To start contributing, you need to clone the repository. You can do this by running the following command:
 
 ```console
-git clone https://github.com/pasiastazebra/typerio.git
+git clone https://github.com/tuezeber/typerio.git
 ```
 
 Once you have a local copy of the project, you can create a new branch to work on. To do this, you can use the following command:
