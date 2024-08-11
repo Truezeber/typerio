@@ -33,23 +33,19 @@ $ npm install typerio
 To get started, you have to import _`typerioRender()`_ function to your project.
 
 ```javascript
-import { typerioRender } from 'typerio'
+import { typerioRender } from "typerio";
 ```
 
 Now you can use _`typerioRender()`_ function to - as it stands - render a text.
 
 ```javascript
-typerioRender(
-  input,
-  {
-    frames,
-    prefix,
-    speed,
-    target,
-    clearingPolicy,
-  },
-  callback
-);
+typerioRender(input, {
+  frames,
+  prefix,
+  speed,
+  target,
+  clearingPolicy,
+});
 ```
 
 #### JavaScript💛
@@ -65,15 +61,14 @@ As you can see, function takes a lot of arguments. But don't panic, let's take a
     HTMLelement: HTMLElement //HTML element inside of which text will be
 }                            //rendered. Usually p or span
 ```
+
 - Configuration object:
   - `frames` - Array of 2 string which will be used as an animation.
   - `prefix` - String placed at the beggining of the rendered text.
   - `speed` - Typing animation speed in ms.
   - `target` - HTML element inside of which animation will be rendered.
   - `clearingPolicy` - Boolean value, if true all content inside of the target will be deleted.
-- `callback` - Optional function that will be launched after the animation.
-
-> Note that every arguments besides `input` and `callback` need to be parsed as one object.
+    > Note that every arguments besides `input` and `callback` need to be parsed as one object.
 
 > `typerioRender()` is an asynchronic function. If you want to call it on the same target more than once in a row, you can use `await` to wait untill previous animation is completed.
 
@@ -112,7 +107,7 @@ typerioConfig.getDefaultConfig();
 ```javascript
 //JavaScript
 
-import { typerioRender, typerioConfig } from 'typerio'
+import { typerioRender, typerioConfig } from "typerio";
 
 const outputWindow = document.querySelector(".window-console");
 const button = document.querySelector("button");
