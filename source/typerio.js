@@ -87,7 +87,6 @@ const typerioConfig = {
  * @param {boolean} [options.clearingPolicy] - If true, targets content will be deleted (optional).
  * @param {string} [options.prefix] - Custom prefix (optional).
  * @param {Array} [options.frames] - Custom frames for animation (optional).
- * @param {Function} callback - Callback to run after animation (optional).
  */
 
 const typerioRender = async (
@@ -98,8 +97,7 @@ const typerioRender = async (
     speed = typerioConfig.speed,
     target = typerioConfig.target,
     clearingPolicy = typerioConfig.clearingPolicy,
-  } = typerioConfig.getDefaultConfig(),
-  callback = () => {}
+  } = typerioConfig.getDefaultConfig()
 ) => {
   const isOdd = (number) => number % 2 !== 0;
 
@@ -163,7 +161,6 @@ const typerioRender = async (
   clearText(clearingPolicy, target);
 
   await render(addPrefix(input, prefix), target, speed);
-  callback();
 };
 
 export { typerioRender, typerioConfig };
